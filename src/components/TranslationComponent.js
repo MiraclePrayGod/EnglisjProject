@@ -3,9 +3,9 @@ import React from 'react';
 const TranslationComponent = ({ words, onSelectTranslation }) => {
   return (
     <div className="translations">
-      {words.map((word, index) => (
-        <button key={index} onClick={() => onSelectTranslation(word.translation)}>
-          {word.translation}
+      {words.map((wordObj, index) => (
+        <button key={index} onClick={() => onSelectTranslation(wordObj)}>
+          {wordObj.translation}
         </button>
       ))}
     </div>
