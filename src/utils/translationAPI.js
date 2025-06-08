@@ -1,6 +1,11 @@
 export const fetchTranslation = async (word) => {
-  // Llamada a una API para obtener la traducción
-  const response = await fetch(`https://api.translate.com/translate?text=${word}`);
-  const data = await response.json();
-  return data.translation;
+  try {
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(word)}&langpair=en|es`
+    );
+    const data = await res.json();
+    return data.responseData.translatedText || 'traducción';
+  } catch (error) {
+    return 'traducción';
+  }
 };

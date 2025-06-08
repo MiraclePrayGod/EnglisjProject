@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 
-const WordComponent = ({ word, onTranslate }) => {
+const WordComponent = ({ word }) => {
   useEffect(() => {
-    gsap.to(`#word-${word}`, {
+    gsap.to(`#word-${word.word}`, {
       y: '100vh',
       duration: 5,
-      onComplete: () => onTranslate(word),
     });
   }, [word]);
 
   return (
-    <div id={`word-${word}`} className="word">
-      {word}
+    <div id={`word-${word.word}`} className="word">
+      {word.word}
     </div>
   );
 };
