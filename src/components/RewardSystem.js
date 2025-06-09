@@ -1,6 +1,16 @@
 // RewardSystem.js
 import React from 'react';
-function RewardSystem({ points }) {
-  return <div>Recompensas: {points}</div>;
-}
+
+const RewardSystem = ({ points }) => {
+  let message = '';
+
+  if (points >= 10) {
+    message = '¡Excelente!';
+  } else if (points >= 5) {
+    message = '¡Sigue así!';
+  }
+
+  return <div className="reward-system">{message}</div>;
+};
+
 export default RewardSystem;

@@ -13,6 +13,7 @@ const WordComponent = ({ word, estado, onMiss, laser, fallDuration, areaHeight, 
   const [left] = useState(getHorizontalPosition(word.id));
   const [hasFallen, setHasFallen] = useState(false);
 
+<<<<<<< HEAD
   useEffect(() => {
     setExploded(false);
     setHasFallen(false);
@@ -88,6 +89,18 @@ const WordComponent = ({ word, estado, onMiss, laser, fallDuration, areaHeight, 
       }}
       data-word-id={dataWordId || word.id}
     >
+=======
+const WordComponent = ({ word }) => {
+  useEffect(() => {
+    gsap.to(`#word-${word.word}`, {
+      y: '100vh',
+      duration: 5,
+    });
+  }, [word]);
+
+  return (
+    <div id={`word-${word.word}`} className="word">
+>>>>>>> 64e57be270e5b9b3e7c7ebc8a832029b2547e758
       {word.word}
     </div>
   );

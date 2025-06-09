@@ -81,15 +81,12 @@ const App = () => {
             w.estado === 'falling'
         );
         if (matchIdx !== -1) {
-          const wordId = fallingWords[matchIdx].id;
-          setLaserId(wordId);
           setShowLaser(true);
-          setTimeout(() => setLaserId(null), 400);
-          setTimeout(() => setShowLaser(false), 400);
+          setTimeout(() => setShowLaser(false), 200);
           setScore(score => score + 1);
           setResultMsg('¡Correcto!');
           setTimeout(() => setResultMsg(''), 800);
-          setFallingWords(fallingWords => fallingWords.filter(w => w.id !== wordId));
+          setFallingWords(fallingWords => fallingWords.filter(w => w.id !== fallingWords[matchIdx].id));
         } else {
           setResultMsg('Incorrecto');
           setTimeout(() => setResultMsg(''), 800);
@@ -250,7 +247,7 @@ const App = () => {
             word={wordObj}
             estado={wordObj.estado}
             onMiss={() => handleMiss(wordObj.id)}
-            laser={laserId === wordObj.id}
+            laser={false}
             fallDuration={FALL_DURATION}
             areaHeight={window.innerHeight - 220}
             vivid
@@ -258,14 +255,7 @@ const App = () => {
           />
         ))}
         <Cannon x={cannonX} />
-        {showLaser && laserId && (
-          <Laser
-            fromX={cannonX}
-            fromY={cannonY}
-            toX={getWordX(laserId)}
-            toY={getLaserTargetTop()}
-          />
-        )}
+        {showLaser && <Laser />}
         <div
           className="floating-typed-below-cannon-vivid"
           style={{
